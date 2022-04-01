@@ -4,8 +4,8 @@ class CustomersController < ApplicationController
 
     def index
         @customers = Customer.alphabetical.all
-        @active_customers = Customer.active.all
-        @inactive_customers = Customer.inactive.all
+        @active_customers = Customer.active.alphabetical.all
+        @inactive_customers = Customer.inactive.alphabetical.all
     end
     
     def show
@@ -28,7 +28,6 @@ class CustomersController < ApplicationController
         
         @customer = Customer.new(customer_params)
         @user = User.new(user_params)
-        # byebug
         @user.role = "customer"
         if !@user.save
             @customer.valid?

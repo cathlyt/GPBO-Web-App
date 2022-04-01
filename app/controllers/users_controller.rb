@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
     def index
         @users = User.alphabetical.all
-        @employees = User.all.employees
+        @employees = User.employees.alphabetical.all
     end
 
     def create

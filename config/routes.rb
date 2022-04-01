@@ -18,12 +18,18 @@ Rails.application.routes.draw do
   
   resources :sessions
 
-  # resources :customers
+  # customers
   get 'customers', to: 'customers#index', as: :customers
   post 'customers', to: 'customers#create', as: :new_customer
   get 'customers/:id', to: 'customers#show', as: :customer
   get 'customers/:id/edit', to: 'customers#edit', as: :edit_customer
   patch 'customers/:id', to: 'customers#update', as: :update_customer
+
+  # categories
+  get 'categories', to: 'categories#index', as: :categories
+  post 'categories', to: 'categories#create', as: :new_category
+  get 'categories/:id/edit', to: 'categories#edit', as: :edit_category
+  patch 'categories/:id', to: 'categories#update', as: :category
 
   
   get 'login', to: 'sessions#new', as: :login
