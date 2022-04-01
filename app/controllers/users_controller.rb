@@ -1,11 +1,37 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_user, only: [:edit, :update]
     before_action :check_login
     authorize_resource
 
     def index
         @users = User.all
+        @employees = User.all.employees
     end
+
+    def create
+        @user = User.new(user_params)
+        if @user.save
+          flash[:notice] = "Successfully added #{@user.username} as a user."
+          redirect_to users_url
+        else
+          render action: 'new'
+        end
+    end
+
+    def edit
+
+    end
+
+    def update
+        if @user.update_attributes(user_params)
+          flash[:notice] = "Successfully updated #{@user.username}."
+          redirect_to users_url
+        else
+          render action: 'edit'
+        end
+    end
+
+    
 
 
     private

@@ -9,11 +9,18 @@ Rails.application.routes.draw do
   end
 
   get 'home', to: 'home#index', as: :home
+
+  # users
+  get 'users', to: 'users#index', as: :users
+  post 'users', to: 'users#create', as: :new_user
+  get 'users/:id/edit', to: 'users#edit', as: :edit_user
+  patch 'users/:id', to: 'users#update', as: :user
+  
   resources :sessions
-  resources :users
+  # resources :users
   resources :customers
-  # get 'users/new', to: 'users#new', as: :signup
-  # get 'user/edit', to: 'users#edit', as: :edit_current_user
+
+  
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
 
