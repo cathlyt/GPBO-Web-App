@@ -38,7 +38,7 @@ class CustomersController < ApplicationController
                 flash[:notice] = "#{@customer.proper_name} was added to the system."
                 redirect_to customer_path(@customer) 
             else
-            render action: 'new'
+                render action: 'new'
             end      
         end
     end

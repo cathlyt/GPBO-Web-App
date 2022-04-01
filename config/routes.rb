@@ -36,7 +36,12 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: :logout
 
 
-  resources :addresses
+  # resources :addresses
+  get 'addresses', to: 'addresses#index', as: :addresses
+  get 'addresses/:id', to: 'addresses#show', as: :address
+  post 'addresses', to: 'addresses#create', as: :new_address
+  get 'addresses/:id/edit', to: 'addresses#edit', as: :edit_address
+  patch 'addresses/:id', to: 'addresses#update', as: :update_address
   resources :items
 
   root 'home#index'
