@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   get 'addresses/:id/edit', to: 'addresses#edit', as: :edit_address
   patch 'addresses/:id', to: 'addresses#update', as: :update_address
   resources :items
+  patch 'items/:id/toggle_active', to: 'items#toggle_active', as: :toggle_active
+  patch 'items/:id/toggle_feature', to: 'items#toggle_feature', as: :toggle_feature
 
   root 'home#index'
   

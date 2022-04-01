@@ -10,22 +10,14 @@ class CustomersController < ApplicationController
     
     def show
         check_login
-        if @current_user.nil?
-            return
-        end
-
-        if @current_user.role?(:admin) or @current_user.role?(:customer)
+        if logged_in?
             authorize! :show, @customer
-            # unsure!!
-            @previous_orders = Order.all
-            @addresses = Address.all
+            @previous_orders = @customer.orders
+            @addresses = @customer.addresses
         end
-
-        
     end
 
     def create
-        
         @customer = Customer.new(customer_params)
         @user = User.new(user_params)
         @user.role = "customer"
