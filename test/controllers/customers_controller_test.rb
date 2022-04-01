@@ -109,13 +109,13 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
-  # test "should update customer" do
-  #   login_admin
-  #   patch customer_path(@customer), params: { customer: { first_name: @customer.first_name, last_name: @customer.last_name, email: "eddie@example.com", phone: @customer.phone, active: @customer.active } }
-  #   assert_redirected_to customer_path(@customer)
+  test "should update customer" do
+    login_admin
+    patch customer_path(@customer), params: { customer: { first_name: @customer.first_name, last_name: @customer.last_name, email: "eddie@example.com", phone: @customer.phone, active: @customer.active } }
+    assert_redirected_to customer_path(@customer)
 
-  #   patch customer_path(@customer), params: { customer: { first_name: @customer.first_name, last_name: nil, email: "eddie@example.con", phone: @customer.phone, active: @customer.active } }
-  #   assert_template :edit
-  # end
+    patch customer_path(@customer), params: { customer: { first_name: @customer.first_name, last_name: nil, email: "eddie@example.con", phone: @customer.phone, active: @customer.active } }
+    assert_template :edit
+  end
 
 end

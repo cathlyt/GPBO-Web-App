@@ -1,6 +1,6 @@
 
 class CustomersController < ApplicationController
-    before_action :set_customer, only: [:show,:edit]
+    before_action :set_customer, only: [:show,:edit,:update]
 
     def index
         @customers = Customer.alphabetical.all
@@ -46,6 +46,15 @@ class CustomersController < ApplicationController
 
     def edit
         authorize! :edit, @customer
+    end
+
+    def update
+        if @customer.update_attributes(customer_params)
+            flash[:notice] = "Successfully updated #{@customer.proper_name}."
+            redirect_to customer_url
+        else
+            render action: 'edit'
+        end
     end
 
     

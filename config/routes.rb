@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post 'customers', to: 'customers#create', as: :new_customer
   get 'customers/:id', to: 'customers#show', as: :customer
   get 'customers/:id/edit', to: 'customers#edit', as: :edit_customer
+  patch 'customers/:id', to: 'customers#update', as: :update_customer
 
   
   get 'login', to: 'sessions#new', as: :login
