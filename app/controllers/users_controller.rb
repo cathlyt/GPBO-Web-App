@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     authorize_resource
 
     def index
-        @users = User.all
+        @users = User.alphabetical.all
         @employees = User.all.employees
     end
 

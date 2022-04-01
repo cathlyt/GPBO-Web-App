@@ -17,8 +17,12 @@ Rails.application.routes.draw do
   patch 'users/:id', to: 'users#update', as: :user
   
   resources :sessions
-  # resources :users
-  resources :customers
+
+  # resources :customers
+  get 'customers', to: 'customers#index', as: :customers
+  post 'customers', to: 'customers#create', as: :new_customer
+  get 'customers/:id', to: 'customers#show', as: :customer
+  get 'customers/:id/edit', to: 'customers#edit', as: :edit_customer
 
   
   get 'login', to: 'sessions#new', as: :login
@@ -27,6 +31,8 @@ Rails.application.routes.draw do
 
   resources :addresses
   resources :items
+
+  root 'home#index'
   
 
   
