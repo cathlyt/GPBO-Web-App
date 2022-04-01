@@ -41,10 +41,6 @@ class AddressesController < ApplicationController
         @address = Address.find(params[:id])
     end
 
-    # def customer_params
-    #     params.require(:customer).permit(:first_name,:last_name,:email,:phone,:active)
-    # end
-
     def address_params
         params.require(:address).permit(:customer_id, :recipient, :street_1, :city, :state, :zip, :active, :is_billing)
     end
