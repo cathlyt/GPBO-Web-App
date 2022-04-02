@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # handle 404 errors with an exception as well
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    flash[:error] = "We apologize, but this information could not be found."
+    redirect_to home_path
+  end
+
   private
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
