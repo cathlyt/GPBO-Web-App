@@ -32,8 +32,7 @@ Rails.application.routes.draw do
   patch 'categories/:id', to: 'categories#update', as: :category
 
   # item_prices
-  get 'item_prices', to: 'item_prices#index', as: :item_prices
-  post 'item_prices', to: 'item_prices#create', as: :new_item_prices
+  post 'item_prices', to: 'item_prices#create', as: :item_prices
   get 'item_prices', to: 'item_prices#new', as: :new_item_price
 
   
