@@ -31,12 +31,16 @@ Rails.application.routes.draw do
   get 'categories/:id/edit', to: 'categories#edit', as: :edit_category
   patch 'categories/:id', to: 'categories#update', as: :category
 
+  # item_prices
+  get 'item_prices', to: 'item_prices#index', as: :item_prices
+  post 'item_prices', to: 'item_prices#create', as: :new_item_prices
+  get 'item_prices', to: 'item_prices#new', as: :new_item_price
+
   
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
 
 
-  # resources :addresses
   get 'addresses', to: 'addresses#index', as: :addresses
   get 'addresses/:id', to: 'addresses#show', as: :address
   post 'addresses', to: 'addresses#create', as: :new_address
