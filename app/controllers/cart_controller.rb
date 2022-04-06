@@ -29,13 +29,20 @@ class CartController < ApplicationController
 
     def empty
         clear_cart
+        redirect_to view_cart_path
         flash[:notice] = "Cart is emptied."
-        redirect_to view_cart
+        
     end
 
     def checkout
+        @subtotal = subtotal
+        @items_in_cart = items_in_cart
+        @shipping_cost = shipping_cost
+        @total = total
         @addresses = Customer.find(params[:customer_id])
         @order = Order.find(params[:customer_id])
+
+        
         
     end
 
@@ -54,6 +61,10 @@ class CartController < ApplicationController
 
     def total
         @total = subtotal + shipping_cost
+    end
+
+    def current_user
+        @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
 end

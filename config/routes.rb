@@ -42,11 +42,11 @@ Rails.application.routes.draw do
   get 'cart', to: 'cart#show', as: :view_cart
   get 'cart/:id/add', to: 'cart#add', as: :add_item
   get 'cart/:id/remove', to: 'cart#remove', as: :remove_item
-  get 'cart/:id/empty', to:'cart#empty', as: :empty_cart
+  get 'cart/empty', to:'cart#empty', as: :empty_cart
   get 'cart/checkout', to: 'cart#checkout', as: :checkout
 
   # search
-  get 'home', to:'home#search', as: :search
+  get 'home/search', to:'home#search', as: :search
 
 
   
