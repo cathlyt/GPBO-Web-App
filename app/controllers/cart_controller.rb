@@ -39,11 +39,10 @@ class CartController < ApplicationController
         @items_in_cart = items_in_cart
         @shipping_cost = shipping_cost
         @total = total
-        @addresses = Customer.find(params[:customer_id])
-        @order = Order.find(params[:customer_id])
+        @addresses = current_user.customer.addresses
+        # unsure
+        @order = current_user.customer.orders
 
-        
-        
     end
 
     private
