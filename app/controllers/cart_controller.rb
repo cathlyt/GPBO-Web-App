@@ -2,28 +2,41 @@
 class CartController < ApplicationController
     include AppHelpers::Cart
     include AppHelpers::Shipping
-    before_action :check_login
-    before_action :subtotal, :items_in_cart, :shipping_cost, :total
+    # before_action :check_login
+    # before_action :subtotal, :items_in_cart, :shipping_cost, :total
 
 
-    def show
-       
+    def show 
+        @subtotal = subtotal
+        @items_in_cart = items_in_cart
+        @shipping_cost = shipping_cost
+        @total = total
     end
 
     def add
-        
+        @item = Item.find(params[:id])
         add_item_to_cart(@item)
-        flash[:notice] = "#{@item.name} was added to cart.", 
+        redirect_to view_cart_path
+        flash[:notice] = "#{@item.name} was added to cart."
     end
 
     def remove
-        
+        @item = Item.find(params[:id])
+        remove_item_from_cart(@item)
+        redirect_to view_cart_path
+        flash[:notice] = "#{@item.name} was removed from cart."
     end
 
     def empty
+        clear_cart
+        flash[:notice] = "Cart is emptied."
+        redirect_to view_cart
     end
 
     def checkout
+        @addresses = Customer.find(params[:customer_id])
+        @order = Order.find(params[:customer_id])
+        
     end
 
     private

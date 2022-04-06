@@ -40,10 +40,13 @@ Rails.application.routes.draw do
 
   # cart
   get 'cart', to: 'cart#show', as: :view_cart
-  get 'cart', to: 'cart#add', as: :add_item
-  get 'cart', to: 'cart#remove', as: :remove_item
-  get 'cart', to:'cart#empty', as: :empty_cart
-  get 'cart', to: 'cart#checkout', as: :checkout
+  get 'cart/:id/add', to: 'cart#add', as: :add_item
+  get 'cart/:id/remove', to: 'cart#remove', as: :remove_item
+  get 'cart/:id/empty', to:'cart#empty', as: :empty_cart
+  get 'cart/checkout', to: 'cart#checkout', as: :checkout
+
+  # search
+  get 'home', to:'home#search', as: :search
 
 
   
