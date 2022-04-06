@@ -35,6 +35,17 @@ Rails.application.routes.draw do
   post 'item_prices', to: 'item_prices#create', as: :item_prices
   get 'item_prices', to: 'item_prices#new', as: :new_item_price
 
+  # orders
+  resources :orders
+
+  # cart
+  get 'cart', to: 'cart#show', as: :view_cart
+  get 'cart', to: 'cart#add', as: :add_item
+  get 'cart', to: 'cart#remove', as: :remove_item
+  get 'cart', to:'cart#empty', as: :empty_cart
+  get 'cart', to: 'cart#checkout', as: :checkout
+
+
   
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
