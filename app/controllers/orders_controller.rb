@@ -5,20 +5,32 @@ class OrdersController < ApplicationController
 
     def index
         @order = Order.chronological.all
-        if logged_in?
-            authorize! :index, @admin
+        if current_user.role? :admin
             @pending_orders = Order.paid.chronological.all
-            @past_orders = Order.chronological.all - Order.paid.chronological.all
-        elsif logged_in?
-            authorize! :index, @customer
+            @past_orders = Order.chronological.all - Order.not_shipped
+        elsif current_user.role? :customer
             @all_orders = Order.for_customer(@customer)
         end
 
     end
 
     def show
-        @previous_orders = Order.find(params[:customer_id])
+        @previous_orders = Order.for_customer(@customer) - [@order]
         @order_items = @order.order_items
+    end
+    
+
+    def create
+        @order = Order.new(order_params)
+        if @order.save
+            flash[:notice] = "Thank you for ordering from GPBO."
+            redirect_to order_path(Order.last)
+        else 
+            if !@order.valid?
+                redirect_to checkout_path
+                return
+            end
+        end
     end
 
     private
@@ -27,6 +39,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-        params.require(:order).permit(:customer_id,:address_id,:credit_card_number,:expiration_year,:expiration_month )
+        params.require(:order).permit(:customer_id,:address_id,:credit_card_number,:expiration_year,:expiration_month)
     end
 end

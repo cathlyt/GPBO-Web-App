@@ -37,6 +37,9 @@ Rails.application.routes.draw do
 
   # orders
   resources :orders
+  # get 'orders', to: 'orders#index', as: :orders
+  # get 'orders/:id', to: 'orders#show', as: :order
+  # post 'orders', to: 'orders#create', as: :new_order
 
   # cart
   get 'cart', to: 'cart#show', as: :view_cart
