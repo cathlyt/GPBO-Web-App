@@ -48,8 +48,11 @@ Rails.application.routes.draw do
   get 'cart/empty', to:'cart#empty', as: :empty_cart
   get 'cart/checkout', to: 'cart#checkout', as: :checkout
 
-  # search
+  # home
   get 'home/search', to:'home#search', as: :search
+  get 'home/contact', to:'home#contact', as: :contact
+  get 'home/about', to:'home#about', as: :about
+  get 'home/privacy', to:'home#privacy', as: :privacy
 
 
   

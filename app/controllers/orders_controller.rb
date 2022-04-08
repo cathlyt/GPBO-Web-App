@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
     def create
         @order = Order.new(order_params)
         if @order.save
+            # puts "order saved"
             flash[:notice] = "Thank you for ordering from GPBO."
             redirect_to order_path(Order.last)
         else 

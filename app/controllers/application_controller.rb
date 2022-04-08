@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = "Access denied."
+    flash[:error] = "You are not authorized to perform this action."
     redirect_to home_path
   end
 
