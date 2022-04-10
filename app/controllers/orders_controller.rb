@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+    include AppHelpers::Shipping
+    include AppHelpers::Cart
     before_action :set_order, only: [:show]
     before_action :check_login
     authorize_resource
@@ -22,6 +24,9 @@ class OrdersController < ApplicationController
 
     def create
         @order = Order.new(order_params)
+        @order.date = Date.today
+        @order.products_total = calculate_cart_items_cost
+        @order.shipping = calculate_cart_shipping
         if @order.save
             # puts "order saved"
             flash[:notice] = "Thank you for ordering from GPBO."

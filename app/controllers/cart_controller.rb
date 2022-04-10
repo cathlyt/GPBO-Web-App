@@ -40,7 +40,6 @@ class CartController < ApplicationController
         @shipping_cost = shipping_cost
         @total = total
         @addresses = current_user.customer.addresses
-        # unsure
         @order = current_user.customer.orders
 
     end
