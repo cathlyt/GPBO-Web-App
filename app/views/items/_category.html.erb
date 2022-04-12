@@ -4,7 +4,7 @@
   <td><%= link_to 'All', items_path %></td>
   <% for category in @categories %>
     <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
-      <td><%= link_to category.name, category_path(category) %></td>
+      <td><%= link_to category.name, items_path(:category => category) %></td>
     </td>
     </tr>
   <% end %>

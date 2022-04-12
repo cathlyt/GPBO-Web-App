@@ -2,7 +2,7 @@
   <p>No <%= state.downcase %> customers at this time.</p>
 
   <% else %>
-  <h4><%= state.capitalize %> Customers at GPBO</h4>
+  <h4><%= state.capitalize %> Customers in GPBO</h4>
   <%= render :partial => "partials/title_with_search", locals: {title: "Active Customers"} %>
   <table class="striped highlight">
     <thead>
