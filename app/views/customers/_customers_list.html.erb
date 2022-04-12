@@ -1,4 +1,4 @@
-<% if @customers.empty? %>
+<% if customers.empty? %>
   <p>No <%= state.downcase %> customers at this time.</p>
 
   <% else %>
@@ -11,7 +11,7 @@
       <th>Email</th>
       <th class="align_center">Options</th>
     </thead>
-    <% for customer in @customers %>
+    <% for customer in customers %>
       <tr>
         <td><%= link_to "#{customer.name}", customer_path(customer) %></td>
         <td><%= number_to_phone customer.phone %></td>
@@ -29,7 +29,7 @@
     <% end %>
   </table>
   <br />
-  <%= will_paginate @customers, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  <%= will_paginate customers, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 <% end %>
 <p>&nbsp;</p>
 

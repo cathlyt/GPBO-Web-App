@@ -6,7 +6,7 @@
       <th>Order</th>
       <th>Date</th>
     </thead>
-    <% for order in @orders %>
+    <% for order in orders %>
       <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
         <td><%= link_to order.id, order_path(order) %></td>
         <td><%= order.date %></td>
@@ -15,4 +15,4 @@
   </table>
   <p class="supertiny"></p>
   <br />
-  <%= will_paginate @orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  <%# <%= will_paginate orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> 

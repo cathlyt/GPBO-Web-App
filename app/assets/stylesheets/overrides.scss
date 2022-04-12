@@ -1,0 +1,20 @@
+/********** TABS ********/
+.tabs .tab a.active {
+    color: #ffc400;
+  }
+  
+  .tabs .tab a:hover {
+    color: #ffd600;
+  }
+  
+  .tabs .tab a {
+    color: #bdbdbd;
+  }
+  
+  .tabs .indicator {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: #ffd600;
+    will-change: left, right;
+  }
