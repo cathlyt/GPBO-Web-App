@@ -3,9 +3,9 @@ class CustomersController < ApplicationController
     before_action :set_customer, only: [:show,:edit,:update]
 
     def index
-        @customers = Customer.alphabetical.all
-        @active_customers = Customer.active.alphabetical.all
-        @inactive_customers = Customer.inactive.alphabetical.all
+        @customers = Customer.alphabetical.all.paginate(page: params[:page]).per_page(15)
+        @active_customers = Customer.active.alphabetical.all.paginate(page: params[:page]).per_page(15)
+        @inactive_customers = Customer.inactive.alphabetical.all.paginate(page: params[:page]).per_page(15)
     end
     
     def show
