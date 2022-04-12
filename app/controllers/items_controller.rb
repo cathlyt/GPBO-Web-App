@@ -4,15 +4,14 @@ class ItemsController < ApplicationController
     authorize_resource
 
     def index
+        @categories = Category.alphabetical.all
         if (params[:category].nil?)
             @items = Item.alphabetical.all
-            @categories = Category.alphabetical.all
             @featured_items = Item.featured.active.alphabetical.all
             @other_items = Item.alphabetical.active.all - Item.featured.active.alphabetical.all
         else
             category = Category.find(params[:category])
             @items = Item.for_category(category).alphabetical.all
-            @categories = Category.alphabetical.all
             @featured_items = Item.for_category(category).featured.active.alphabetical.all
             @other_items = Item.for_category(category).alphabetical.active.all - Item.for_category(category).featured.active.alphabetical.all
         end
