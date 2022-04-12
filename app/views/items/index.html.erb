@@ -1,8 +1,4 @@
-<% if @featured_items.empty? %>
-  <h4>There are no featured items in the system at this time.</h4>
-<% else %>
-  <h4>Featured Items at GPBO</h4>
-  <%= render :partial => "partials/title_with_search", locals: {title: "Search Items"} %>
-  
-<% end %>
-  
+<%= render partial: "partials/structure_item", locals: {model_name: "item", 
+                                                         leftbar: "category", 
+                                                         primary: "featured_items",
+                                                         secondary: "other_items"} %>

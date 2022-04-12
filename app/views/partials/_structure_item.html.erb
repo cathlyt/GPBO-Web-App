@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col s3">
+    <!-- left partial div -->
+    <%= render partial: "#{leftbar}" %>
+  </div>
+  <div class="col s8">
+    <!-- render the primary-->
+    <%= render partial: "#{primary}" %>
+    <% unless secondary.nil? %>
+      <p>&nbsp;</p>
+    <%= render partial: "#{secondary}" %>
+    <%end%>
+  </div>
+</div>
+
+

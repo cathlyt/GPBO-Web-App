@@ -6,8 +6,8 @@ class ItemsController < ApplicationController
     def index
         @items = Item.alphabetical.all
         @categories = Category.alphabetical.all
-        @featured_items = Item.featured.alphabetical.all
-        @other_items = Item.alphabetical.all - Item.featured.alphabetical.all
+        @featured_items = Item.featured.active.alphabetical.all
+        @other_items = Item.alphabetical.active.all - Item.featured.active.alphabetical.all
     end
 
     def show

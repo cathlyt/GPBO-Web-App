@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-content">
+    <h5><%= best_in_place @item, :name, as: :input %> <br> </h5>
+        <%= best_in_place @item, :description, as: :input %><br/><br/>
+        <p> Color:  <%=@item.color%>  </p> 
+        <p> Weight:  <%=@item.weight%> lbs  </p> 
+        <p> Current Price:  <%=number_to_currency(@item.current_retail_price)%>  </p> <br>
+
+
+      <br>
+  </div>
+</div>
