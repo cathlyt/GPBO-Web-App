@@ -1,0 +1,22 @@
+<h4>Pending Orders in GPBO</h4>
+
+<table class="striped highlight">
+  <thead>
+    <th>Order</th>
+    <th>Date</th>
+    <%# <th>Owner</th> %>
+  </thead>
+  <% for order in @pending_orders %>
+    <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+      <td><%= link_to order.id, order_path(order) %></td>
+      <td><%= order.date %></td>
+      <%# <td><%= link_to pet.owner.name, owner_path(pet.owner) %></td> %>
+
+    </td>
+    </tr>
+  <% end %>
+</table>
+<p class="supertiny"></p>
+<br />
+<%= will_paginate @pending_orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<p>&nbsp;</p>

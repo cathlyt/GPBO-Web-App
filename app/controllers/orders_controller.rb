@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
     include AppHelpers::Shipping
     include AppHelpers::Cart
+    require 'will_paginate/array'
     before_action :set_order, only: [:show]
     before_action :check_login
     authorize_resource
@@ -8,10 +9,10 @@ class OrdersController < ApplicationController
     def index
         @order = Order.chronological.all
         if current_user.role? :admin
-            @pending_orders = Order.paid.chronological.all
-            @past_orders = Order.chronological.all - Order.not_shipped
+            @pending_orders = Order.all.paginate(page: params[:page]).per_page(10) - Order.paid.paginate(page: params[:page]).per_page(10)
+            @past_orders = Order.paid.paginate(page: params[:page]).per_page(10)
         elsif current_user.role? :customer
-            @all_orders = Order.for_customer(@customer)
+            @all_orders = Order.for_customer(@customer).paginate(page: params[:page]).per_page(10)
         end
 
     end
