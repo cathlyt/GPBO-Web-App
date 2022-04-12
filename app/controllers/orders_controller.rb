@@ -7,12 +7,12 @@ class OrdersController < ApplicationController
     authorize_resource
 
     def index
-        @order = Order.chronological.all
+        @orders = Order.chronological.all.paginate(page: params[:page]).per_page(15)
         if current_user.role? :admin
-            @pending_orders = Order.all.paginate(page: params[:page]).per_page(10) - Order.paid.paginate(page: params[:page]).per_page(10)
-            @past_orders = Order.paid.paginate(page: params[:page]).per_page(10)
+            @pending_orders = Order.chronological.all.paginate(page: params[:page]).per_page(10) - Order.paid.all.paginate(page: params[:page]).per_page(10)
+            @past_orders = Order.paid.chronological.all.paginate(page: params[:page]).per_page(10)
         elsif current_user.role? :customer
-            @all_orders = Order.for_customer(@customer).paginate(page: params[:page]).per_page(10)
+            @all_orders = Order.for_customer(@customer).all.paginate(page: params[:page]).per_page(10)
         end
 
     end

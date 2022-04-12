@@ -4,6 +4,9 @@
       <li><%= link_to 'Items', items_path %></li>
       <li><%= link_to 'Customers', customers_path %></li>
       <li><%= link_to 'Orders', orders_path %></li>
+      <% if can? :read, User %>
+        <li><%= link_to 'Employees', users_path %></li>
+      <% end %>
     </ul>
     <ul class="right">
       <li><%= link_to 'Logout', logout_path %></li>
