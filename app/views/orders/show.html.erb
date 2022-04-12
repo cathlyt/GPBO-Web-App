@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-content">
+    <h5> Order Details </h5>
+    <p> Customer:  <%=@order.customer.proper_name%>  </p> <br>
+
+    <p>Date:  <%= @order.date.strftime("%B %d, %Y")%></p><br>
+
+    <p>Recipient:  <%= best_in_place @order.address, :recipient, as: :input %></p><br>
+
+    <p>Grand Total:  <%= number_to_currency(@order.grand_total,precision:2)%></p><br>
+
+    <br>
+  </div>
+</div>

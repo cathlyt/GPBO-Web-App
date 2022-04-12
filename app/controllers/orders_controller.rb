@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
     def show
         @previous_orders = Order.for_customer(@customer).chronological.all.paginate(page: params[:page]).per_page(15) - [@order]
-        @order_items = @order.order_items.chronological.all.paginate(page: params[:page]).per_page(15)
+        @order_items = @order.order_items.all.paginate(page: params[:page]).per_page(15)
     end
     
 
