@@ -1,21 +1,29 @@
 <div id="tabbed">
 <% if logged_in? && ( current_user.role?(:admin)) %>
-  <tabs>
-
-    <tab name="pending orders" v-bind:selected="true">
+    <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a href="#pending">Pending Orders</a></li>
+           
+        <li class="tab col s3"><a class="active" href="#past">Past Orders</a></li>
+      </ul>
+    </div>
+    <div id="pending" class="col s12">
       <%= render :partial => "orders_list", locals: {orders: @pending_orders, state: 'pending'} %>
-    </tab>
-
-    <tab name="past orders">
+      </div>
+    <div id="past" class="col s12">
       <%= render :partial => "orders_list", locals: {orders: @past_orders, state: 'past'} %>
-    </tab>
-
-  </tabs>
-<% elsif logged_in? && current_user.role?(:customer) %>
-  <tab name="pending orders" v-bind:selected="true">
-      <%= render :partial => "orders_list", locals: {orders: @all_orders, state: 'all'} %>
-    </tab>
-<%end%>
+    </div>
+  </div>
 </div>
-
-<p>&nbsp;</p>
+<% elsif logged_in? && current_user.role?(:customer) %>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+       <li class="tab col s3"><a href="#all">All Orders</a></li>
+       </ul>
+    </div>
+    <div id="all" class="col s12">
+      <%= render :partial => "orders_list", locals: {orders: @all_orders, state: 'all'} %>
+    </div>
+<%end%>

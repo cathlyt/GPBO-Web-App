@@ -4,11 +4,17 @@
   <thead>
     <th>Name</th>
     <th>Price</th>
+    <% if logged_in? && ( current_user.role?(:admin)) %>
+      <th>Inventory Level</th>
+    <% end %>
   </thead>
   <% for item in @other_items %>
     <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
       <td><%= link_to item.name, item_path(item) %></td>
       <td><%= number_to_currency(item.current_retail_price) %></td>
+      <% if logged_in? && ( current_user.role?(:admin)) %>
+        <td><%= item.inventory_level%>
+      <%end%>
 
     </td>
     </tr>

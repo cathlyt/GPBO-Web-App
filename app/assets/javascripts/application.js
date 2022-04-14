@@ -24,9 +24,19 @@
 // @import "materialize";
 // @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
+// Tabs
+$(document).ready(function(){
+   $('.tabs').tabs();
+ });
+
 // Flash fade
 $(function() {
     $('.alert-box').fadeIn('normal', function() {
        $(this).delay(3700).fadeOut();
     });
+ });
+
+ //parallex
+ $(document).ready(function(){
+   $('.parallax').parallax();
  });
