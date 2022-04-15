@@ -1,8 +1,7 @@
 <h4>Featured Items at GPBO</h4>
 <% if @featured_items.empty?%>
   <p>There are no featured items in that category at this time.</p>
-<%end%>
-
+<%else%>
 <table class="striped highlight">
   <thead>
     <th>Name</th>
@@ -22,3 +21,4 @@
     </tr>
   <% end %>
 </table>
+<%end%>

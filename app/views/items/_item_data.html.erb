@@ -5,8 +5,13 @@
         <p> Color:  <%=@item.color%>  </p> 
         <p> Weight:  <%=@item.weight%> lbs  </p> 
         <p> Current Price:  <%=number_to_currency(@item.current_retail_price)%>  </p> <br>
-
-
       <br>
+    <h6><b>Similar Items</b></h6>
+    <% for item in @similar_items %>
+        <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+          <td><%= link_to item.name, item_path(item) %></td>  &nbsp;&nbsp;
+        </td>
+        </tr>
+    <% end %>
   </div>
 </div>

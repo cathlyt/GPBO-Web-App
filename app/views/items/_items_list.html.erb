@@ -1,5 +1,7 @@
 <h4><%= state.capitalize %> Items at GPBO</h4>
-
+<% if items.empty?%>
+  <p>There are no <%= state %> items in that category at this time.</p>
+<%else%>
   <table class="striped highlight">
     <thead>
     <th>Name</th>
@@ -20,6 +22,5 @@
     </tr>
   <% end %>
   </table>
-  <p class="supertiny"></p>
-  <br />
+<%end%>
   <%# <%= will_paginate orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> 
