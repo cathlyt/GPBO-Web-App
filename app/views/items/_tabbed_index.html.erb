@@ -1,0 +1,19 @@
+<div id="tabbed">
+    <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#featured">Featured Items at GPBO</a></li>
+           
+        <li class="tab col s3"><a href="#other">Other Items at GPBO</a></li>
+      </ul>
+    </div>
+    <div id="featured" class="col s12">
+      <%= render :partial => "items_list", locals: {items: @featured_items, state: 'featured'} %>
+      </div>
+    <div id="other" class="col s12">
+      <%= render :partial => "items_list", locals: {items: @other_items, state: 'other'} %>
+    </div>
+    
+
+  </div>
+</div>

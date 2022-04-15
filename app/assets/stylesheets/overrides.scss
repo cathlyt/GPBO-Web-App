@@ -1,19 +1,50 @@
-/* topbar*/
-#topbar {
-	padding: 3em .5em 5em .5em; 
-	background-image:url('background.png');
+
+#welcome{
+  padding: 3em .5em 5em .5em; 
+	background-image:url('background.jpg');
 	background-size:100%;
 	background-position:center;
 	transition:0.5%
 }
 
+#welcomecaption{
+  font-family:verdana, sans-serif;
+  font-weight:bolder;
+  color: white
+}
+
+/* topbar*/
+#topbar {
+	font-family:verdana, sans-serif;
+}
+
+
+#topbar a{	
+	color: #451813;
+	text-decoration: none;
+  margin: 10px;
+}
+
+#topbar a:hover {	
+	color: #E1C140;
+	text-decoration: underline;
+}
+
+#logo{
+  margin: 30px;
+}
+
+img{
+	float:right;
+}
+
 /********** TABS ********/
 .tabs .tab a.active {
-    color: #ffc400;
+    color: #E1C140;
   }
   
   .tabs .tab a:hover {
-    color: #ffd600;
+    color: #E1C140;
   }
   
   .tabs .tab a {
@@ -24,6 +55,35 @@
     position: absolute;
     bottom: 0;
     height: 2px;
-    background-color: #ffd600;
+    background-color: #E1C140;
     will-change: left, right;
+  }
+  
+// navigation
+  #nav {
+    background-color: black;
+    height: 50px;
+  }
+  
+  #nav ul a {
+    color: #E1C140;
+    font-size: 1.1rem;
+  }
+
+  // footer
+
+  #footer a{	
+    color: #451813;
+    text-decoration: none;
+    margin: 10px;
+  }
+
+  #footer a:hover {	
+    color: #E1C140;
+    text-decoration: underline;
+  }
+
+  // button
+  #btn-large{
+    color:#E1C140
   }

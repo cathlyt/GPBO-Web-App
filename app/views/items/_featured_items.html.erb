@@ -18,11 +18,13 @@
       <% if logged_in? && ( current_user.role?(:admin)) %>
         <td><%= item.inventory_level%>
       <%end%>
-
     </td>
     </tr>
   <% end %>
 </table>
+</div>
+
+     
 <p class="supertiny"></p>
 <br />
 <%# <%= will_paginate @featured_items previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> 
