@@ -6,6 +6,8 @@
   <div class="col s8">
     <!-- render the primary-->
     <%= render partial: "#{primary}" %>
+    <%= render :partial => "partials/add_new_object", locals: {model_name: model_name, object: object} %>
+
     <% unless secondary.nil? %>
       <p>&nbsp;</p>
     <%= render partial: "#{secondary}" %>
