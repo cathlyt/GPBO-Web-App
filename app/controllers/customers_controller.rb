@@ -27,6 +27,7 @@ class CustomersController < ApplicationController
         else
             @customer.user_id = @user.id
             if @customer.save
+                session[:user_id] = @user.id
                 flash[:notice] = "#{@customer.proper_name} was added to the system."
                 redirect_to customer_path(@customer) 
             else
@@ -55,7 +56,7 @@ class CustomersController < ApplicationController
     end
 
     def customer_params
-        params.require(:customer).permit(:first_name,:last_name,:email,:phone,:active)
+        params.require(:customer).permit(:first_name,:last_name,:email,:phone,:active, :username, :password, :password_confirmation, :role, :greeting)
     end
 
     def user_params

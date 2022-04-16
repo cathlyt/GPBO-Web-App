@@ -8,6 +8,8 @@
     <th>Price</th>
     <% if logged_in? && ( current_user.role?(:admin)) %>
       <th>Inventory Level</th>
+    <% elsif logged_in? && ( current_user.role?(:customer)) %>
+      <th></th>
     <% end %>
   </thead>
   <% for item in items %>
@@ -16,6 +18,8 @@
       <td><%= number_to_currency(item.current_retail_price) %></td>
       <% if logged_in? && ( current_user.role?(:admin)) %>
         <td><%= item.inventory_level%>
+      <% elsif logged_in? && ( current_user.role?(:customer)) %>
+        <td><%= link_to "Add to Cart", add_item_path(item)%>
       <%end%>
 
     </td>
