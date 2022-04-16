@@ -4,7 +4,21 @@
         <%= best_in_place @item, :description, as: :input %><br/><br/>
         <p> Color:  <%=@item.color%>  </p> 
         <p> Weight:  <%=@item.weight%> lbs  </p> 
-        <p> Current Price:  <%=number_to_currency(@item.current_retail_price)%>  </p> <br>
+        <p> Current Price:  <%=number_to_currency(@item.current_retail_price)%>  </p> 
+        <% if can? :update, Item %>
+          <p> Inventory Level: <%=@item.inventory_level%> </p>
+          <p> Reorder Level: <%=@item.reorder_level%> </p>
+          <% if @item.active %>
+            <%= link_to "Make Inactive", toggle_active_path(@item), method: :patch, class: 'waves-effect waves-light btn' %> 
+          <% else %>
+            <%= link_to "Make Active", toggle_active_path(@item), method: :patch, class: 'waves-effect waves-light btn' %> 
+          <% end %>  
+          <% if @item.is_featured %>
+            <%= link_to "Stop Featured", toggle_feature_path(@item), method: :patch, class: 'waves-effect waves-light btn' %> 
+          <% else %>
+            <%= link_to "Make Featured", toggle_feature_path(@item), method: :patch, class: 'waves-effect waves-light btn' %> 
+          <% end %>
+        <% end %>
       <br>
     <h6><b>Similar Items</b></h6>
     <% for item in @similar_items %>

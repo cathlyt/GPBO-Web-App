@@ -17,16 +17,8 @@
     </div>
     <% if can? :new, ItemPrice %>
       <div class="card-action">
-        <%= link_to "Add a new Price", new_item_price_path(item_id: @item.id) %>
+        <%= link_to "Add a New Price", new_item_price_path(item_id: @item.id) %>
       </div>
     <% end %>
   </div>
-<% else %>
-  <% if can? :new, MedicineCost %>
-    <div class="card grey lighten-3">
-      <div class="card-action">
-        <%= link_to "Add a new cost", new_medicine_cost_path(medicine_id: @medicine.id) %>
-      </div>
-    </div>
-  <% end %>
 <% end %>
