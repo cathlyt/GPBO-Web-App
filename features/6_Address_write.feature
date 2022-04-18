@@ -13,6 +13,7 @@ Feature: Adding addresses
     And I should see "Current Price: $5.50"
     When I click on the link "Add to Cart"
     Then I should see "GPBO Muffin Tray was added to cart."
+    Then show me the page
     And I should see "View Cart(1)"
     When I click on the link "View Cart(1)"
     Then I should see "Your Cart"

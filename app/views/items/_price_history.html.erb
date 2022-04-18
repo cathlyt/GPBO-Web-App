@@ -15,10 +15,10 @@
         <% end %>
     </table>
     </div>
-    <% if can? :new, ItemPrice %>
+  </div>
+<% end %>
+<% if can? :new, ItemPrice %>
       <div class="card-action">
         <%= link_to "Add a New Price", new_item_price_path(item_id: @item.id) %>
       </div>
-    <% end %>
-  </div>
 <% end %>

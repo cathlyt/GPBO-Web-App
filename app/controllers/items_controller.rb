@@ -18,11 +18,15 @@ class ItemsController < ApplicationController
     end
 
     def show
-        @prices = ItemPrice.paginate(page: params[:page]).per_page(6)
+        @prices = ItemPrice.for_item(@item).paginate(page: params[:page]).per_page(6)
         @similar_items = Item.for_category(@item.category)
     end
 
     def edit
+    end
+
+    def new
+        @item = Item.new
     end
 
     def create

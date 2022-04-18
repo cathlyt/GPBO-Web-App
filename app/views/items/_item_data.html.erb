@@ -2,6 +2,7 @@
   <div class="card-content">
     <h5><%= best_in_place @item, :name, as: :input %> <br> </h5>
         <%= best_in_place @item, :description, as: :input %><br/><br/>
+        
         <p> Color:  <%=@item.color%>  </p> 
         <p> Weight:  <%=@item.weight%> lbs  </p> 
         <p> Current Price:  <%=number_to_currency(@item.current_retail_price)%>  </p> 
@@ -23,9 +24,14 @@
     <h6><b>Similar Items</b></h6>
     <% for item in @similar_items %>
         <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
-          <td><%= link_to item.name, item_path(item) %></td>  &nbsp;&nbsp;
+          <td><%= link_to item.name, item_path(item) %></td>  &nbsp;&nbsp;<br>
         </td>
         </tr>
-    <% end %>
+    <% end %><br>
+    <% if logged_in? && ( current_user.role?(:customer)) %>
+          
+          <td><%= link_to "Add to Cart", add_item_path(@item.id), class: 'waves-effect waves-light btn'%></td>
+          
+    <%end%>
   </div>
 </div>

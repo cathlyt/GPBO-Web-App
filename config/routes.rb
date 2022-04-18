@@ -24,10 +24,6 @@ Rails.application.routes.draw do
 
   # categories
   resources :categories, except:[:show,:destroy]
-  # get 'categories', to: 'categories#index', as: :categories
-  # post 'categories', to: 'categories#create', as: :new_category
-  # get 'categories/:id/edit', to: 'categories#edit', as: :edit_category
-  # patch 'categories/:id', to: 'categories#update', as: :category
 
   # item_prices
   post 'item_prices', to: 'item_prices#create', as: :item_prices
