@@ -1,10 +1,18 @@
 <div class="card">
   <div class="card-content">
-    <% if logged_in? && current_user.role?(:customer) %>
     <h5>Order Details</h5>
     <p>Date:  <%= @order.date.strftime("%B %d, %Y")%></p>
+    <% if logged_in? && current_user.role?(:admin) %>
+      <p>Customer:  <%= @order.customer.proper_name%></p>
+    <%end%> 
     <p>Recipient:  <%= @order.address.recipient%></p>
-    <p>Grand Total: <%= number_to_currency(@order.grand_total)%></p><br>
+    <p>Grand Total: <%= number_to_currency(@order.grand_total)%></p>
+    <% if @order.order_items.size >=2 %>
+        <p><%= "#{@order.order_items.size} Items"%></p>
+    <%else%>
+        <p><%= "#{@order.order_items.size} Item"%></p>
+    <%end%> 
+
     <h5>Order Cost Breakdown</h5>
     <table class="striped highlight">
     <th>Item</th>
@@ -41,10 +49,10 @@
       <td><%= link_to order.date.strftime("%m/%d/%y"), order_path(order.id)  %></td>
       <td><%= order.customer.proper_name %></td>
       <td><%= order.address.recipient %></td>
-      <% if order.order_items.size <= 1%>
-        <td><%= "#{order.order_items.size} Item"%></td>
-      <%else%>
+      <% if order.order_items.size >=2 %>
         <td><%= "#{order.order_items.size} Items"%></td>
+      <%else%>
+        <td><%= "#{order.order_items.size} Item"%></td>
       <%end%> 
       <td><%= number_to_currency(order.grand_total)%></td>
     </tr>
@@ -53,19 +61,5 @@
 
   </div>  
 
-  <% elsif logged_in? && current_user.role?(:admin) %>
-  <div class="card-content">
-  <h5> Order Details </h5>
-  <p> Customer:  <%=@order.customer.proper_name%>  </p> <br>
-
-  <p>Date:  <%= @order.date.strftime("%B %d, %Y")%></p><br>
-
-  <p>Recipient:  <%= @order.address.recipient%></p><br>
-
-  <p>Grand Total:  <%= number_to_currency(@order.grand_total,precision:2)%></p><br>
-
-  <br>
-  </div>
-  <%end%>
   
 </div>

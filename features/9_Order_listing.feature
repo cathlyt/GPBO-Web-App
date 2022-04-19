@@ -27,7 +27,6 @@ Feature: Order listing
     Given a logged in customer
     When I go to the orders page
     And I click on the link "02/17/22"
-    Then show me the page
     And I should see "Order Details"
     And I should see "Date: February 17, 2022"
     And I should see "Recipient"
@@ -45,7 +44,6 @@ Feature: Order listing
     And I should see "Cost"
     And I should see "1 Item"
     And I should not see "1 Items"
-    Then show me the page
     And I should see "GPBO Round Cake Pan"
     And I should see "Quantity"
     When I click on the link "GPBO Round Cake Pan"
@@ -93,6 +91,7 @@ Feature: Order listing
     And I should see "Grand Total"
     And I should see "Previous Orders"
     And I should not see "02/11/22"
+    Then show me the page
     And I should see "02/14/22"
     And I should see "Date"
     And I should see "Recipient"

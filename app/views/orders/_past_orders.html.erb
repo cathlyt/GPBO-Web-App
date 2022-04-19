@@ -2,13 +2,19 @@
 
 <table class="striped highlight">
   <thead>
-    <th>Order</th>
     <th>Date</th>
+    <th>Customer</th>
+    <th>Recipient</th>
+    <th>Item Count</th>
+    <th>Cost</th>
   </thead>
   <% for order in @past_orders %>
     <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
-      <td><%= link_to order.id, order_path(order) %></td>
-      <td><%= order.date %></td>
+      <td><%= link_to order.date.strftime("%m/%d/%y"), order_path(order.id)  %></td>
+      <td><%= order.customer.name %></td>
+      <td><%= order.address.recipient %></td>
+      <td><%= "#{order.order_items.size}"%></td>
+      <td><%= number_to_currency(order.grand_total)%>
 
     </td>
     </tr>
