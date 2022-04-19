@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
             @pending_orders = Order.chronological.all.paginate(page: params[:page]).per_page(10) - Order.paid.all.paginate(page: params[:page]).per_page(10)
             @past_orders = Order.paid.chronological.all.paginate(page: params[:page]).per_page(10)
         elsif current_user.role? :customer
-            @all_orders = Order.for_customer(@customer).all.paginate(page: params[:page]).per_page(10)
+            @all_orders = Order.for_customer(current_user.customer).all.paginate(page: params[:page]).per_page(10)
         end
 
     end
@@ -47,5 +47,9 @@ class OrdersController < ApplicationController
 
     def order_params
         params.require(:order).permit(:customer_id,:address_id,:credit_card_number,:expiration_year,:expiration_month)
+    end
+
+    def current_user
+        @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 end

@@ -9,10 +9,10 @@
       </ul>
     </div>
     <div id="pending" class="col s12">
-      <%= render :partial => "orders_list", locals: {orders: @pending_orders, state: 'pending'} %>
+      <%= render :partial => "pending_orders"%>
       </div>
     <div id="past" class="col s12">
-      <%= render :partial => "orders_list", locals: {orders: @past_orders, state: 'past'} %>
+      <%= render :partial => "past_orders" %>
     </div>
   </div>
 </div>
@@ -24,6 +24,6 @@
        </ul>
     </div>
     <div id="all" class="col s12">
-      <%= render :partial => "orders_list", locals: {orders: @all_orders, state: 'all'} %>
+      <%= render :partial => "all_orders"%>
     </div>
 <%end%>

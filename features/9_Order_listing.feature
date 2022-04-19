@@ -13,6 +13,7 @@ Feature: Order listing
     And I should see "Recipient"
     And I should see "Item Count"
     And I should see "Cost"
+    Then show me the page
     And I should see "02/17/22"
     And I should see "Jeff Egan"
     And I should see "1"
