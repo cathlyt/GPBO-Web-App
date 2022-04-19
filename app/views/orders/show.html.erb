@@ -1,5 +1,71 @@
-<%= render partial: "partials/structure1", locals: {model_name: "item", 
-                                                         object: @item,
-                                                         primary: "item_data", 
-                                                         secondary: nil,
-                                                         sidebar: "price_history"} %>
+<div class="card">
+  <div class="card-content">
+    <% if logged_in? && current_user.role?(:customer) %>
+    <h5>Order Details</h5>
+    <p>Date:  <%= @order.date.strftime("%B %d, %Y")%></p>
+    <p>Recipient:  <%= @order.address.recipient%></p>
+    <p>Grand Total: <%= number_to_currency(@order.grand_total)%></p><br>
+    <h5>Order Cost Breakdown</h5>
+    <table class="striped highlight">
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Price per unit</th>
+    <% for order_item in @order_items %>
+    <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+      <td><%= link_to order_item.item.name, item_path(order_item.item.id)  %></td>
+      <td><%= order_item.quantity %></td>
+      <td><%= number_to_currency(order_item.item.current_retail_price) %></td>
+    </tr>
+    <% end %>
+    </table>
+
+    <table class="striped highlight">
+    <th>Product Subtotal</th>
+    <th>Shipping</th>
+    <tr>
+    <td><%=number_to_currency(@order.products_total)%></td>
+    <td><%=number_to_currency(@order.shipping)%></td></tr>
+    </table>
+
+    <h5>Previous Orders</h5>
+    <table class="striped highlight">
+    <thead>
+    <th>Date</th>
+    <th>Customer</th>
+    <th>Recipient</th>
+    <th>Item Count</th>
+    <th>Cost</th>
+    </thead>
+    <% for order in @previous_orders %>
+    <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+      <td><%= link_to order.date.strftime("%m/%d/%y"), order_path(order.id)  %></td>
+      <td><%= order.customer.proper_name %></td>
+      <td><%= order.address.recipient %></td>
+      <% if order.order_items.size <= 1%>
+        <td><%= "#{order.order_items.size} Item"%></td>
+      <%else%>
+        <td><%= "#{order.order_items.size} Items"%></td>
+      <%end%> 
+      <td><%= number_to_currency(order.grand_total)%></td>
+    </tr>
+    <% end %>
+    </table>
+
+  </div>  
+
+  <% elsif logged_in? && current_user.role?(:admin) %>
+  <div class="card-content">
+  <h5> Order Details </h5>
+  <p> Customer:  <%=@order.customer.proper_name%>  </p> <br>
+
+  <p>Date:  <%= @order.date.strftime("%B %d, %Y")%></p><br>
+
+  <p>Recipient:  <%= @order.address.recipient%></p><br>
+
+  <p>Grand Total:  <%= number_to_currency(@order.grand_total,precision:2)%></p><br>
+
+  <br>
+  </div>
+  <%end%>
+  
+</div>

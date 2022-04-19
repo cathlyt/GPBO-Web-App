@@ -13,9 +13,8 @@
       <td><%= link_to order.date.strftime("%m/%d/%y"), order_path(order.id)  %></td>
       <td><%= order.customer.proper_name %></td>
       <td><%= order.address.recipient %></td>
-      <td><%= order.order_items.size%>
+      <td><%= "#{order.order_items.size} Item"%></td>
       <td><%= number_to_currency(order.grand_total)%>
-      
     </td>
     </tr>
   <% end %>
