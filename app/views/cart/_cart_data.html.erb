@@ -1,10 +1,32 @@
 <div class="card">
   <div class="card-content">
     <h5>Your Cart</h5><br/>
-    <b> Items:&nbsp;&nbsp;</b><br>
+    <%if @items_in_cart.empty?%>
+    <b>Your cart is currently empty.</b> 
+    <td><%= link_to "Start shopping", items_path, class: 'waves-effect waves-light btn'%></td>
 
+    <%else%>
+    <b> Items in cart:&nbsp;&nbsp;</b><br>
+
+    <table class="striped highlight">
+    <% for order_item in @items_in_cart %>
+    <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+      <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
+      <td><%= "Unit Price: #{number_to_currency(order_item.item.current_retail_price)}" %></td>
+      <td><%= "Quantity: #{order_item.quantity}"%></td>
+      <td><%= "Subtotal: #{number_to_currency(order_item.subtotal)}"%></td>
+      <td><%= link_to "Remove", remove_item_path(order_item.item.id)%></td>
+    </td>
+    </tr>
+    <% end %>
+  </table>
+  <b><%= "Subtotal: #{number_to_currency(@subtotal)}"%></b><br>
+  <b><%= "Shipping: #{number_to_currency(@shipping_cost)}"%></b><br>
+  <b><%= "Grand Total: #{number_to_currency(@total)}"%></b><br>
     <br>
-
-    <td><%= link_to "Checkout", checkout_path, class: 'waves-effect waves-light btn'%></td>
+  <td><%= link_to "Empty cart", empty_cart_path, class: 'waves-effect waves-light btn'%></td>  
+  <td><%= link_to "Continue shopping", items_path, class: 'waves-effect waves-light btn'%></td>
+  <td><%= link_to "Checkout", checkout_path, class: 'waves-effect waves-light btn'%></td>
+  <%end%>
   </div>
 </div>

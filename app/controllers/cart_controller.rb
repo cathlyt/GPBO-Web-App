@@ -16,7 +16,7 @@ class CartController < ApplicationController
     def add
         @item = Item.find(params[:id])
         add_item_to_cart(params[:id])
-        redirect_to view_cart_path
+        redirect_to item_path(params[:id])
         flash[:notice] = "#{@item.name} was added to cart."
     end
 

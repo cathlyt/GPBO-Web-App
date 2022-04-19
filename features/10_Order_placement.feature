@@ -17,6 +17,7 @@ Feature: Order placement
     When I click on the link "View Cart(1)"
     Then I should see "Your Cart"
     Then I should see "GPBO Muffin Tray"
+    Then show me the page
     And I should see "Unit Price: $5.50"
     And I should see "Quantity: 1"
     And I should see "Subtotal: $5.50"
