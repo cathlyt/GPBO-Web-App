@@ -4,11 +4,11 @@
       <li><%= link_to 'Items', items_path %></li>
       <li><%= link_to 'My Account', customer_path(current_user.customer) %></li>
       <li><%= link_to "My Orders", orders_path%>
-      <%# <%=if session[:cart].nil?%> %>
+      <%if session[:cart].size > 0  %>
+        <li><%= link_to "View Cart(#{session[:cart].size})", view_cart_path%></li>
+      <%else%>
         <li><%= link_to "View Cart", view_cart_path%></li>
-      <%# <%=else%> %>
-        <%# <li><%= link_to "View Cart (#{session[:cart].get_number_of_items})", view_cart_path%></li> %>
-      <%# <%end%> %>
+      <%end%>
 
     </ul>
     <ul class="right">

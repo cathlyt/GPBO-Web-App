@@ -13,7 +13,6 @@ Feature: Adding addresses
     And I should see "Current Price: $5.50"
     When I click on the link "Add to Cart"
     Then I should see "GPBO Muffin Tray was added to cart."
-    Then show me the page
     And I should see "View Cart(1)"
     When I click on the link "View Cart(1)"
     Then I should see "Your Cart"
@@ -27,4 +26,5 @@ Feature: Adding addresses
     And I select "Pennsylvania" from "address_state"
     And I fill in "address_zip" with "15212"
     And I press "Create Address"
+    Then show me the page
     Then I should see "The address was added to Alex Egan."

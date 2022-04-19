@@ -12,11 +12,17 @@ class AddressesController < ApplicationController
     def show
     end
 
+    def new
+        @address = Address.new
+    end
+    
+
     def create
         @address = Address.new(address_params)
+        @address.customer = current_user.customer
         if @address.save
             flash[:notice] = "The address was added to #{@address.customer.proper_name}."
-            redirect_to customer_path(@address.customer_id) 
+            redirect_to customer_path(@address.customer.id) 
         else
             render action: 'new'
         end      
@@ -43,5 +49,9 @@ class AddressesController < ApplicationController
 
     def address_params
         params.require(:address).permit(:customer_id, :recipient, :street_1, :city, :state, :zip, :active, :is_billing)
+    end
+
+    def current_user
+        @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 end

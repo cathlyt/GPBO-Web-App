@@ -29,8 +29,7 @@
         </tr>
     <% end %><br>
     <% if logged_in? && ( current_user.role?(:customer)) %>
-          
-          <td><%= link_to "Add to Cart", add_item_path(@item.id), class: 'waves-effect waves-light btn'%></td>
+          <%= link_to "Add to Cart", add_item_path(@item.id), class: 'waves-effect waves-light btn'%>
           
     <%end%>
   </div>

@@ -2,13 +2,9 @@
   <div class="card-content">
     <h5>Your Cart</h5><br/>
     <b> Items:&nbsp;&nbsp;</b><br>
-      <%= best_in_place @customer, :phone, as: :input, display_with: :number_to_phone %><br /><br />
 
-    <b>Email:&nbsp;&nbsp;</b><br>
-    <%= best_in_place @customer, :email, as: :input %><br /><br />
+    <br>
 
-    <b>Active: <%=@customer.active ? "Yes" : "No" %><br><br><br>
-
-      <br>
+    <td><%= link_to "Checkout", checkout_path, class: 'waves-effect waves-light btn'%></td>
   </div>
 </div>

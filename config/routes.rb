@@ -12,11 +12,8 @@ Rails.application.routes.draw do
 
   # users
   resources :users, except:[:show,:destroy]
-  # get 'users', to: 'users#index', as: :users
-  # post 'users', to: 'users#create', as: :new_user
-  # get 'users/:id/edit', to: 'users#edit', as: :edit_user
-  # patch 'users/:id', to: 'users#update', as: :user
-  
+
+  # sessions
   resources :sessions
 
   # customers
@@ -31,9 +28,6 @@ Rails.application.routes.draw do
 
   # orders
   resources :orders
-  # get 'orders', to: 'orders#index', as: :orders
-  # get 'orders/:id', to: 'orders#show', as: :order
-  # post 'orders', to: 'orders#create', as: :new_order
 
   # cart
   get 'cart', to: 'cart#show', as: :view_cart
@@ -53,12 +47,14 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
 
+  resources :addresses,  except:[:destroy]
+  # get 'addresses', to: 'addresses#index', as: :addresses
+  # get 'addresses/:id', to: 'addresses#show', as: :address
+  # post 'addresses', to: 'addresses#create', as: :new_address
+  # get 'addresses/:id/edit', to: 'addresses#edit', as: :edit_address
+  # patch 'addresses/:id', to: 'addresses#update', as: :update_address
 
-  get 'addresses', to: 'addresses#index', as: :addresses
-  get 'addresses/:id', to: 'addresses#show', as: :address
-  post 'addresses', to: 'addresses#create', as: :new_address
-  get 'addresses/:id/edit', to: 'addresses#edit', as: :edit_address
-  patch 'addresses/:id', to: 'addresses#update', as: :update_address
+
   resources :items
   patch 'items/:id/toggle_active', to: 'items#toggle_active', as: :toggle_active
   patch 'items/:id/toggle_feature', to: 'items#toggle_feature', as: :toggle_feature
