@@ -17,7 +17,6 @@ Feature: Order placement
     When I click on the link "View Cart(1)"
     Then I should see "Your Cart"
     Then I should see "GPBO Muffin Tray"
-    Then show me the page
     And I should see "Unit Price: $5.50"
     And I should see "Quantity: 1"
     And I should see "Subtotal: $5.50"
@@ -127,7 +126,6 @@ Feature: Order placement
     And I should see "Grand Total:"
     And I should see "$14.75"
     When I click on the link "Checkout" 
-    # Then show me the page
     And I select "Alex Egan - 5000 Forbes Avenue Pittsburgh, PA 15213" from "order_address_id"
     And I fill in "order_credit_card_number" with "4444111122225555"
     And I select "9" from "order_expiration_month"

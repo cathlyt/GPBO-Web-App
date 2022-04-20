@@ -11,6 +11,7 @@
             <div class="form-inputs col s8">
             <%= f.input :item_id, as: :hidden, input_html: { value: @item.id } %>
             <%= f.input :price %>
+            <%= f.input :start_date, as: :hidden, input_html: { value: Date.today } %>
             </div>
         </div>
       <div class="row">
