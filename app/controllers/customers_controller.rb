@@ -1,5 +1,6 @@
 
 class CustomersController < ApplicationController
+    include AppHelpers::Cart
     before_action :set_customer, only: [:show,:edit,:update]
 
     def index
@@ -32,6 +33,7 @@ class CustomersController < ApplicationController
             @customer.user_id = @user.id
             if @customer.save
                 session[:user_id] = @user.id
+                create_cart 
                 flash[:notice] = "#{@customer.proper_name} was added to the system."
                 redirect_to customer_path(@customer) 
             else
