@@ -1,5 +1,39 @@
-<%= render partial: "partials/structure1", locals: {model_name: "cart", 
-                                                         object: @cart,
-                                                         primary: "cart_data", 
-                                                         secondary: nil,
-                                                         sidebar: nil} %>
+<div class="row">
+<div class="col s2 "></div>
+<div class="col s8 center-align">
+<div class="card">
+  <div class="card-content">
+    <h5>Your Cart</h5><br/>
+    <%if @items_in_cart.empty?%>
+    <b>Your cart is currently empty.</b> <br><br>
+    <td><%= link_to "Start shopping", items_path, class: 'waves-effect waves-light btn'%></td>
+
+    <%else%>
+    <h6><b> Items in cart:&nbsp;&nbsp;</b></h6><br>
+
+    <table class="striped highlight">
+    <% for order_item in @items_in_cart %>
+    <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+      <td><%= link_to order_item.item.name, item_path(order_item.item) %></td>
+      <td><%= "Unit Price: #{number_to_currency(order_item.item.current_retail_price)}" %></td>
+      <td><%= "Quantity: #{order_item.quantity}"%></td>
+      <td><%= "Subtotal: #{number_to_currency(order_item.subtotal)}"%></td>
+      <td><%= link_to "Remove", remove_item_path(order_item.item.id)%></td>
+    </td>
+    </tr>
+    <% end %>
+  </table>
+  <br>
+  <b><%= "Subtotal: #{number_to_currency(@subtotal)}"%>&nbsp;&nbsp;&nbsp;&nbsp;</b>
+  <b><%= "Shipping: #{number_to_currency(@shipping_cost)}"%>&nbsp;&nbsp;&nbsp;&nbsp;</b>
+  <b><%= "Grand Total: #{number_to_currency(@total)}"%></b>
+    <br>
+
+  <div class = "row"></div>  
+  <td><%= link_to "Empty cart", empty_cart_path, class: 'waves-effect waves-light btn'%></td>  
+  <td><%= link_to "Continue shopping", items_path, class: 'waves-effect waves-light btn'%></td>
+  <td><%= link_to "Checkout", checkout_path, class: 'waves-effect waves-light btn'%></td>
+  <%end%>
+  </div>
+</div>
+</div></div>

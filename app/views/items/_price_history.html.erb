@@ -1,3 +1,4 @@
+<%if can? :read, ItemPrice%>
 <% unless @prices.empty? %>
   <div class="card">
     <div class="card-content">
@@ -22,3 +23,4 @@
         <%= link_to "Add a New Price", new_item_price_path(item_id: @item.id) %>
       </div>
 <% end %>
+<%end%>
