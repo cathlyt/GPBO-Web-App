@@ -65,8 +65,4 @@ class CartController < ApplicationController
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
-    def order_params
-        params.require(:order).permit(:customer_id,:address_id,:credit_card_number,:expiration_year,:expiration_month)
-    end
-
 end
