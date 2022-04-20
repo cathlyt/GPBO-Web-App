@@ -3,7 +3,8 @@
     <!-- left partial div -->
     <%= render partial: "#{leftbar}" %>
   </div>
-  <div class="col s8">
+  <div class="col s1"></div>
+  <div class="col s7">
     <!-- render the primary-->
     <%= render partial: "#{primary}" %>
     <%= render :partial => "partials/add_new_object", locals: {model_name: model_name, object: object} %>
