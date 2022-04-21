@@ -1,0 +1,26 @@
+<div class="card">
+<div class="card-content">
+<h5>Previous Orders</h5>
+    <table class="striped highlight">
+    <thead>
+    <th>Date</th>
+    <th>Customer</th>
+    <th>Recipient</th>
+    <th>Item Count</th>
+    <th>Cost</th>
+    </thead>
+    <% for order in @previous_orders %>
+    <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+      <td><%= link_to order.date.strftime("%m/%d/%y"), order_path(order.id)  %></td>
+      <td><%= order.customer.proper_name %></td>
+      <td><%= order.address.recipient %></td>
+      <% if order.order_items.size >=2 %>
+        <td><%= "#{order.order_items.size} Items"%></td>
+      <%else%>
+        <td><%= "#{order.order_items.size} Item"%></td>
+      <%end%> 
+      <td><%= number_to_currency(order.grand_total)%></td>
+    </tr>
+    <% end %>
+    </table>
+</div></div>

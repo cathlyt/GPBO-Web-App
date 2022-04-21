@@ -1,0 +1,40 @@
+<div class="card">
+<div class="card-content">
+<h5>Order Details</h5>
+    <p>Date:  <%= @order.date.strftime("%B %d, %Y")%></p>
+    <% if logged_in? && current_user.role?(:admin) %>
+      <p>Customer:  <%= @order.customer.proper_name%></p>
+    <%end%> 
+    <p>Recipient:  <%= @order.address.recipient%></p>
+    <p>Grand Total: <%= number_to_currency(@order.grand_total)%></p>
+    <% if @order.order_items.size >=2 %>
+        <p><%= "#{@order.order_items.size} Items"%></p>
+    <%else%>
+        <p><%= "#{@order.order_items.size} Item"%></p>
+    <%end%> 
+
+<h5>Order Cost Breakdown</h5>
+    <table class="striped highlight">
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Price per unit</th>
+    <% for order_item in @order_items %>
+    <tr class="<%= cycle('dg_list_line_odd', 'dg_list_line_even') %>">
+      <td><%= link_to order_item.item.name, item_path(order_item.item.id)  %></td>
+      <td><%= order_item.quantity %></td>
+      <td><%= number_to_currency(order_item.item.current_retail_price) %></td>
+    </tr>
+    <% end %>
+    </table>
+    <br><div class="col s2 "></div>
+
+    <table class="striped highlight">
+    
+    <th class="align_center">Product Subtotal</th>
+    <th class="align_center">Shipping</th>
+    <tr>
+    
+    <td class="align_center"><%=number_to_currency(@order.products_total)%></td>
+    <td class="align_center"><%=number_to_currency(@order.shipping)%></td></tr>
+    </table>
+</div></div>
