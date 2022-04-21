@@ -10,14 +10,14 @@
           <p> Inventory Level: <%=@item.inventory_level%> </p>
           <p> Reorder Level: <%=@item.reorder_level%> </p>
           <% if @item.active %>
-            <%= link_to "Make Inactive", toggle_active_path(@item), method: :patch, class: 'waves-effect waves-light btn' %> 
+            <%= link_to "Make Inactive", toggle_active_path(@item), method: :patch, class: 'waves-effect waves-light btn amber accent-4' %> 
           <% else %>
-            <%= link_to "Make Active", toggle_active_path(@item), method: :patch, class: 'waves-effect waves-light btn' %> 
+            <%= link_to "Make Active", toggle_active_path(@item), method: :patch, class: 'waves-effect waves-light btn amber accent-4' %> 
           <% end %>  
           <% if @item.is_featured %>
-            <%= link_to "Stop Featured", toggle_feature_path(@item), method: :patch, class: 'waves-effect waves-light btn' %> 
+            <%= link_to "Stop Featured", toggle_feature_path(@item), method: :patch, class: 'waves-effect waves-light btn amber accent-4' %> 
           <% else %>
-            <%= link_to "Make Featured", toggle_feature_path(@item), method: :patch, class: 'waves-effect waves-light btn' %> 
+            <%= link_to "Make Featured", toggle_feature_path(@item), method: :patch, class: 'waves-effect waves-light btn amber accent-4' %> 
           <% end %>
         <% end %>
       <br>
@@ -29,7 +29,7 @@
         </tr>
     <% end %><br><br>
     <% if logged_in? && ( current_user.role?(:customer)) %>
-          <%= link_to "Add to Cart", add_item_path(@item.id), class: 'waves-effect waves-light btn'%>
+          <%= link_to "Add to Cart", add_item_path(@item.id), class: 'waves-effect waves-light btn amber accent-4'%>
           
     <%end%>
   </div>

@@ -6,7 +6,7 @@
     <h5>Your Cart</h5><br/>
     <%if @items_in_cart.empty?%>
     <b>Your cart is currently empty.</b> <br><br>
-    <td><%= link_to "Start shopping", items_path, class: 'waves-effect waves-light btn'%></td>
+    <td><%= link_to "Start shopping", items_path, class: 'waves-effect waves-light btn amber accent-4'%></td>
 
     <%else%>
     <h6><b> Items in cart:&nbsp;&nbsp;</b></h6><br>
@@ -30,9 +30,9 @@
     <br>
 
   <div class = "row"></div>  
-  <td><%= link_to "Empty cart", empty_cart_path, class: 'waves-effect waves-light btn'%></td>  
-  <td><%= link_to "Continue shopping", items_path, class: 'waves-effect waves-light btn'%></td>
-  <td><%= link_to "Checkout", checkout_path, class: 'waves-effect waves-light btn'%></td>
+  <td><%= link_to "Empty cart", empty_cart_path, class: 'waves-effect waves-light btn amber accent-4'%></td>  
+  <td><%= link_to "Continue shopping", items_path, class: 'waves-effect waves-light btn amber accent-4'%></td>
+  <td><%= link_to "Checkout", checkout_path, class: 'waves-effect waves-light btn amber accent-4'%></td>
   <%end%>
   </div>
 </div>

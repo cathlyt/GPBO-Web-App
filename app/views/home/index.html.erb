@@ -2,8 +2,12 @@
   <div class="col s12">
     <div id = "welcome">
       <div id="welcomecaption">
+          <br><br><br>
           <h3>Welcome to the Great Pittsburgh Baking Outlet</h3><br>
+          <%if !logged_in?%>
           <%= link_to "Become a Customer", new_customer_path, class: 'btn-large amber' %>
+          <%end%>
+          <br><br><br><br><br>
       </div>
 
     </div>
